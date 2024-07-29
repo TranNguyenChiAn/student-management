@@ -1,0 +1,26 @@
+{
+  "annotations": {
+    "changelogDate": "20240728214141"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "courseName",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "name": "Course",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityName": "student",
+      "otherEntityRelationshipName": "course",
+      "relationshipName": "student",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceImpl"
+}

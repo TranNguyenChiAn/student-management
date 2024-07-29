@@ -1,0 +1,26 @@
+{
+  "studentManagementApplicationApp": {
+    "tableTime": {
+      "home": {
+        "title": "Table Times",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Table Time",
+        "createOrEditLabel": "Create or edit a Table Time",
+        "notFound": "No Table Times found"
+      },
+      "created": "A new Table Time is created with identifier {{ param }}",
+      "updated": "A Table Time is updated with identifier {{ param }}",
+      "deleted": "A Table Time is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Table Time {{ id }}?"
+      },
+      "detail": {
+        "title": "Table Time"
+      },
+      "id": "ID",
+      "classes": "Classes",
+      "student": "Student",
+      "course": "Course"
+    }
+  }
+}

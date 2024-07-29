@@ -1,0 +1,26 @@
+{
+  "studentManagementApplicationApp": {
+    "classes": {
+      "home": {
+        "title": "Classes",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Classes",
+        "createOrEditLabel": "Create or edit a Classes",
+        "notFound": "No Classes found"
+      },
+      "created": "A new Classes is created with identifier {{ param }}",
+      "updated": "A Classes is updated with identifier {{ param }}",
+      "deleted": "A Classes is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Classes {{ id }}?"
+      },
+      "detail": {
+        "title": "Classes"
+      },
+      "id": "ID",
+      "className": "Class Name",
+      "student": "Student",
+      "tableTime": "Table Time"
+    }
+  }
+}

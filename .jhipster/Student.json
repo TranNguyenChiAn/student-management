@@ -1,0 +1,41 @@
+{
+  "annotations": {
+    "changelogDate": "20240728214143"
+  },
+  "applications": "*",
+  "documentation": "The Employee entity.",
+  "fields": [
+    {
+      "fieldName": "fullName",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "email",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "gender",
+      "fieldType": "Gender",
+      "fieldValues": "MALE,FEMALE"
+    }
+  ],
+  "name": "Student",
+  "pagination": "infinite-scroll",
+  "relationships": [
+    {
+      "documentation": "Another side of the same relationship",
+      "otherEntityName": "classes",
+      "relationshipName": "classes",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "course",
+      "relationshipName": "course",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceImpl"
+}

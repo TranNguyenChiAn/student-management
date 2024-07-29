@@ -1,0 +1,9 @@
+{
+  "studentManagementApplicationApp": {
+    "Gender": {
+      "null": "",
+      "MALE": "MALE",
+      "FEMALE": "FEMALE"
+    }
+  }
+}
