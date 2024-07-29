@@ -1,7 +1,6 @@
 package com.mycompany.myapp.service;
 
 import com.mycompany.myapp.domain.Course;
-import java.util.List;
 import java.util.Optional;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -41,13 +40,6 @@ public interface CourseService {
      * @return the list of entities.
      */
     Page<Course> findAll(Pageable pageable);
-
-    /**
-     * Get all the Course where TableTime is {@code null}.
-     *
-     * @return the {@link List} of entities.
-     */
-    List<Course> findAllWhereTableTimeIsNull();
 
     /**
      * Get the "id" course.

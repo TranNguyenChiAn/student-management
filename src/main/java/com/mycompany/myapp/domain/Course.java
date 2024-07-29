@@ -32,12 +32,8 @@ public class Course implements Serializable {
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "course")
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-    @JsonIgnoreProperties(value = { "classes", "course", "tableTime" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "classes", "course" }, allowSetters = true)
     private Set<Student> students = new HashSet<>();
-
-    @JsonIgnoreProperties(value = { "classes", "student", "course" }, allowSetters = true)
-    @OneToOne(fetch = FetchType.LAZY, mappedBy = "course")
-    private TableTime tableTime;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -95,25 +91,6 @@ public class Course implements Serializable {
     public Course removeStudent(Student student) {
         this.students.remove(student);
         student.setCourse(null);
-        return this;
-    }
-
-    public TableTime getTableTime() {
-        return this.tableTime;
-    }
-
-    public void setTableTime(TableTime tableTime) {
-        if (this.tableTime != null) {
-            this.tableTime.setCourse(null);
-        }
-        if (tableTime != null) {
-            tableTime.setCourse(this);
-        }
-        this.tableTime = tableTime;
-    }
-
-    public Course tableTime(TableTime tableTime) {
-        this.setTableTime(tableTime);
         return this;
     }
 

@@ -33,11 +33,13 @@ export const StudentUpdate = () => {
   const genderValues = Object.keys(Gender);
 
   const handleClose = () => {
-    navigate('/student');
+    navigate('/student' + location.search);
   };
 
   useEffect(() => {
-    if (!isNew) {
+    if (isNew) {
+      dispatch(reset());
+    } else {
       dispatch(getEntity(id));
     }
 
@@ -118,6 +120,13 @@ export const StudentUpdate = () => {
                 id="student-email"
                 name="email"
                 data-cy="email"
+                type="text"
+              />
+              <ValidatedField
+                label={translate('studentManagementApplicationApp.student.phoneNumber')}
+                id="student-phoneNumber"
+                name="phoneNumber"
+                data-cy="phoneNumber"
                 type="text"
               />
               <ValidatedField

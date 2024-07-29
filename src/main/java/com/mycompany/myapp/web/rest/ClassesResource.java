@@ -11,13 +11,13 @@ import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.stream.Collectors;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -140,18 +140,10 @@ public class ClassesResource {
      * {@code GET  /classes} : get all the classes.
      *
      * @param pageable the pagination information.
-     * @param filter the filter of the request.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of classes in body.
      */
     @GetMapping("")
-    public ResponseEntity<List<Classes>> getAllClasses(
-        @org.springdoc.core.annotations.ParameterObject Pageable pageable,
-        @RequestParam(name = "filter", required = false) String filter
-    ) {
-        if ("tabletime-is-null".equals(filter)) {
-            log.debug("REST request to get all Classess where tableTime is null");
-            return new ResponseEntity<>(classesService.findAllWhereTableTimeIsNull(), HttpStatus.OK);
-        }
+    public ResponseEntity<List<Classes>> getAllClasses(@org.springdoc.core.annotations.ParameterObject Pageable pageable) {
         log.debug("REST request to get a page of Classes");
         Page<Classes> page = classesService.findAll(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
@@ -169,6 +161,12 @@ public class ClassesResource {
         log.debug("REST request to get Classes : {}", id);
         Optional<Classes> classes = classesService.findOne(id);
         return ResponseUtil.wrapOrNotFound(classes);
+    }
+
+    @GetMapping("/{id}")
+    public List<Classes> getAvailableClassrooms() {
+        List<Classes> allClassrooms = classesRepository.findAll();
+        return allClassrooms.stream().filter(classroom -> classroom.getStudents().size() < 25).collect(Collectors.toList());
     }
 
     /**

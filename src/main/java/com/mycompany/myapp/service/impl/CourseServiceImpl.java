@@ -3,9 +3,7 @@ package com.mycompany.myapp.service.impl;
 import com.mycompany.myapp.domain.Course;
 import com.mycompany.myapp.repository.CourseRepository;
 import com.mycompany.myapp.service.CourseService;
-import java.util.List;
 import java.util.Optional;
-import java.util.stream.StreamSupport;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -61,18 +59,6 @@ public class CourseServiceImpl implements CourseService {
     public Page<Course> findAll(Pageable pageable) {
         log.debug("Request to get all Courses");
         return courseRepository.findAll(pageable);
-    }
-
-    /**
-     *  Get all the courses where TableTime is {@code null}.
-     *  @return the list of entities.
-     */
-    @Transactional(readOnly = true)
-    public List<Course> findAllWhereTableTimeIsNull() {
-        log.debug("Request to get all courses where TableTime is null");
-        return StreamSupport.stream(courseRepository.findAll().spliterator(), false)
-            .filter(course -> course.getTableTime() == null)
-            .toList();
     }
 
     @Override

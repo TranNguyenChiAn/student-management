@@ -39,6 +39,9 @@ class StudentResourceIT {
     private static final String DEFAULT_EMAIL = "AAAAAAAAAA";
     private static final String UPDATED_EMAIL = "BBBBBBBBBB";
 
+    private static final String DEFAULT_PHONE_NUMBER = "AAAAAAAAAA";
+    private static final String UPDATED_PHONE_NUMBER = "BBBBBBBBBB";
+
     private static final Gender DEFAULT_GENDER = Gender.MALE;
     private static final Gender UPDATED_GENDER = Gender.FEMALE;
 
@@ -71,7 +74,11 @@ class StudentResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static Student createEntity(EntityManager em) {
-        Student student = new Student().fullName(DEFAULT_FULL_NAME).email(DEFAULT_EMAIL).gender(DEFAULT_GENDER);
+        Student student = new Student()
+            .fullName(DEFAULT_FULL_NAME)
+            .email(DEFAULT_EMAIL)
+            .phoneNumber(DEFAULT_PHONE_NUMBER)
+            .gender(DEFAULT_GENDER);
         return student;
     }
 
@@ -82,7 +89,11 @@ class StudentResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static Student createUpdatedEntity(EntityManager em) {
-        Student student = new Student().fullName(UPDATED_FULL_NAME).email(UPDATED_EMAIL).gender(UPDATED_GENDER);
+        Student student = new Student()
+            .fullName(UPDATED_FULL_NAME)
+            .email(UPDATED_EMAIL)
+            .phoneNumber(UPDATED_PHONE_NUMBER)
+            .gender(UPDATED_GENDER);
         return student;
     }
 
@@ -152,6 +163,7 @@ class StudentResourceIT {
             .andExpect(jsonPath("$.[*].id").value(hasItem(student.getId().intValue())))
             .andExpect(jsonPath("$.[*].fullName").value(hasItem(DEFAULT_FULL_NAME)))
             .andExpect(jsonPath("$.[*].email").value(hasItem(DEFAULT_EMAIL)))
+            .andExpect(jsonPath("$.[*].phoneNumber").value(hasItem(DEFAULT_PHONE_NUMBER)))
             .andExpect(jsonPath("$.[*].gender").value(hasItem(DEFAULT_GENDER.toString())));
     }
 
@@ -169,6 +181,7 @@ class StudentResourceIT {
             .andExpect(jsonPath("$.id").value(student.getId().intValue()))
             .andExpect(jsonPath("$.fullName").value(DEFAULT_FULL_NAME))
             .andExpect(jsonPath("$.email").value(DEFAULT_EMAIL))
+            .andExpect(jsonPath("$.phoneNumber").value(DEFAULT_PHONE_NUMBER))
             .andExpect(jsonPath("$.gender").value(DEFAULT_GENDER.toString()));
     }
 
@@ -191,7 +204,7 @@ class StudentResourceIT {
         Student updatedStudent = studentRepository.findById(student.getId()).orElseThrow();
         // Disconnect from session so that the updates on updatedStudent are not directly saved in db
         em.detach(updatedStudent);
-        updatedStudent.fullName(UPDATED_FULL_NAME).email(UPDATED_EMAIL).gender(UPDATED_GENDER);
+        updatedStudent.fullName(UPDATED_FULL_NAME).email(UPDATED_EMAIL).phoneNumber(UPDATED_PHONE_NUMBER).gender(UPDATED_GENDER);
 
         restStudentMockMvc
             .perform(
@@ -295,7 +308,7 @@ class StudentResourceIT {
         Student partialUpdatedStudent = new Student();
         partialUpdatedStudent.setId(student.getId());
 
-        partialUpdatedStudent.fullName(UPDATED_FULL_NAME).email(UPDATED_EMAIL).gender(UPDATED_GENDER);
+        partialUpdatedStudent.fullName(UPDATED_FULL_NAME).email(UPDATED_EMAIL).phoneNumber(UPDATED_PHONE_NUMBER).gender(UPDATED_GENDER);
 
         restStudentMockMvc
             .perform(

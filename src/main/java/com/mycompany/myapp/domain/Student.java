@@ -32,24 +32,20 @@ public class Student implements Serializable {
     @Column(name = "email")
     private String email;
 
+    @Column(name = "phone_number")
+    private String phoneNumber;
+
     @Enumerated(EnumType.STRING)
     @Column(name = "gender")
     private Gender gender;
 
-    /**
-     * Another side of the same relationship
-     */
     @ManyToOne(fetch = FetchType.LAZY)
-    @JsonIgnoreProperties(value = { "students", "tableTime" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "students" }, allowSetters = true)
     private Classes classes;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JsonIgnoreProperties(value = { "students", "tableTime" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "students" }, allowSetters = true)
     private Course course;
-
-    @JsonIgnoreProperties(value = { "classes", "student", "course" }, allowSetters = true)
-    @OneToOne(fetch = FetchType.LAZY, mappedBy = "student")
-    private TableTime tableTime;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -92,6 +88,19 @@ public class Student implements Serializable {
         this.email = email;
     }
 
+    public String getPhoneNumber() {
+        return this.phoneNumber;
+    }
+
+    public Student phoneNumber(String phoneNumber) {
+        this.setPhoneNumber(phoneNumber);
+        return this;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
     public Gender getGender() {
         return this.gender;
     }
@@ -131,25 +140,6 @@ public class Student implements Serializable {
         return this;
     }
 
-    public TableTime getTableTime() {
-        return this.tableTime;
-    }
-
-    public void setTableTime(TableTime tableTime) {
-        if (this.tableTime != null) {
-            this.tableTime.setStudent(null);
-        }
-        if (tableTime != null) {
-            tableTime.setStudent(this);
-        }
-        this.tableTime = tableTime;
-    }
-
-    public Student tableTime(TableTime tableTime) {
-        this.setTableTime(tableTime);
-        return this;
-    }
-
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 
     @Override
@@ -176,6 +166,7 @@ public class Student implements Serializable {
             "id=" + getId() +
             ", fullName='" + getFullName() + "'" +
             ", email='" + getEmail() + "'" +
+            ", phoneNumber='" + getPhoneNumber() + "'" +
             ", gender='" + getGender() + "'" +
             "}";
     }

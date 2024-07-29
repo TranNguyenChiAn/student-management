@@ -3,7 +3,6 @@ package com.mycompany.myapp.domain;
 import static com.mycompany.myapp.domain.ClassesTestSamples.*;
 import static com.mycompany.myapp.domain.CourseTestSamples.*;
 import static com.mycompany.myapp.domain.StudentTestSamples.*;
-import static com.mycompany.myapp.domain.TableTimeTestSamples.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import com.mycompany.myapp.web.rest.TestUtil;
@@ -47,19 +46,5 @@ class StudentTest {
 
         student.course(null);
         assertThat(student.getCourse()).isNull();
-    }
-
-    @Test
-    void tableTimeTest() {
-        Student student = getStudentRandomSampleGenerator();
-        TableTime tableTimeBack = getTableTimeRandomSampleGenerator();
-
-        student.setTableTime(tableTimeBack);
-        assertThat(student.getTableTime()).isEqualTo(tableTimeBack);
-        assertThat(tableTimeBack.getStudent()).isEqualTo(student);
-
-        student.tableTime(null);
-        assertThat(student.getTableTime()).isNull();
-        assertThat(tableTimeBack.getStudent()).isNull();
     }
 }

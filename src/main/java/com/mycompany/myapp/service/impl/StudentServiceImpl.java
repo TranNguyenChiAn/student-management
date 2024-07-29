@@ -3,9 +3,7 @@ package com.mycompany.myapp.service.impl;
 import com.mycompany.myapp.domain.Student;
 import com.mycompany.myapp.repository.StudentRepository;
 import com.mycompany.myapp.service.StudentService;
-import java.util.List;
 import java.util.Optional;
-import java.util.stream.StreamSupport;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -53,6 +51,9 @@ public class StudentServiceImpl implements StudentService {
                 if (student.getEmail() != null) {
                     existingStudent.setEmail(student.getEmail());
                 }
+                if (student.getPhoneNumber() != null) {
+                    existingStudent.setPhoneNumber(student.getPhoneNumber());
+                }
                 if (student.getGender() != null) {
                     existingStudent.setGender(student.getGender());
                 }
@@ -67,18 +68,6 @@ public class StudentServiceImpl implements StudentService {
     public Page<Student> findAll(Pageable pageable) {
         log.debug("Request to get all Students");
         return studentRepository.findAll(pageable);
-    }
-
-    /**
-     *  Get all the students where TableTime is {@code null}.
-     *  @return the list of entities.
-     */
-    @Transactional(readOnly = true)
-    public List<Student> findAllWhereTableTimeIsNull() {
-        log.debug("Request to get all students where TableTime is null");
-        return StreamSupport.stream(studentRepository.findAll().spliterator(), false)
-            .filter(student -> student.getTableTime() == null)
-            .toList();
     }
 
     @Override

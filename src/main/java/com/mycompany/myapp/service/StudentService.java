@@ -1,7 +1,6 @@
 package com.mycompany.myapp.service;
 
 import com.mycompany.myapp.domain.Student;
-import java.util.List;
 import java.util.Optional;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -41,13 +40,6 @@ public interface StudentService {
      * @return the list of entities.
      */
     Page<Student> findAll(Pageable pageable);
-
-    /**
-     * Get all the Student where TableTime is {@code null}.
-     *
-     * @return the {@link List} of entities.
-     */
-    List<Student> findAllWhereTableTimeIsNull();
 
     /**
      * Get the "id" student.

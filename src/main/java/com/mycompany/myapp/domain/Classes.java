@@ -30,17 +30,10 @@ public class Classes implements Serializable {
     @Column(name = "class_name", nullable = false)
     private String className;
 
-    /**
-     * A relationship
-     */
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "classes")
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-    @JsonIgnoreProperties(value = { "classes", "course", "tableTime" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "classes", "course" }, allowSetters = true)
     private Set<Student> students = new HashSet<>();
-
-    @JsonIgnoreProperties(value = { "classes", "student", "course" }, allowSetters = true)
-    @OneToOne(fetch = FetchType.LAZY, mappedBy = "classes")
-    private TableTime tableTime;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -98,25 +91,6 @@ public class Classes implements Serializable {
     public Classes removeStudent(Student student) {
         this.students.remove(student);
         student.setClasses(null);
-        return this;
-    }
-
-    public TableTime getTableTime() {
-        return this.tableTime;
-    }
-
-    public void setTableTime(TableTime tableTime) {
-        if (this.tableTime != null) {
-            this.tableTime.setClasses(null);
-        }
-        if (tableTime != null) {
-            tableTime.setClasses(this);
-        }
-        this.tableTime = tableTime;
-    }
-
-    public Classes tableTime(TableTime tableTime) {
-        this.setTableTime(tableTime);
         return this;
     }
 

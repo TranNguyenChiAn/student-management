@@ -1,7 +1,6 @@
 package com.mycompany.myapp.service;
 
 import com.mycompany.myapp.domain.Classes;
-import java.util.List;
 import java.util.Optional;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -41,13 +40,6 @@ public interface ClassesService {
      * @return the list of entities.
      */
     Page<Classes> findAll(Pageable pageable);
-
-    /**
-     * Get all the Classes where TableTime is {@code null}.
-     *
-     * @return the {@link List} of entities.
-     */
-    List<Classes> findAllWhereTableTimeIsNull();
 
     /**
      * Get the "id" classes.

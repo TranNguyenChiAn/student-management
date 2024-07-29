@@ -19,8 +19,7 @@
       },
       "id": "ID",
       "className": "Class Name",
-      "student": "Student",
-      "tableTime": "Table Time"
+      "student": "Student"
     }
   }
 }

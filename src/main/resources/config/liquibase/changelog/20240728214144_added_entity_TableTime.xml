@@ -15,13 +15,13 @@
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="classes_id" type="bigint">
-                <constraints nullable="true" unique="true" uniqueConstraintName="ux_table_time__classes_id" />
+                <constraints nullable="true" />
             </column>
             <column name="student_id" type="bigint">
-                <constraints nullable="true" unique="true" uniqueConstraintName="ux_table_time__student_id" />
+                <constraints nullable="true" />
             </column>
             <column name="course_id" type="bigint">
-                <constraints nullable="true" unique="true" uniqueConstraintName="ux_table_time__course_id" />
+                <constraints nullable="true" />
             </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
         </createTable>

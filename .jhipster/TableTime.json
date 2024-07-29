@@ -5,25 +5,25 @@
   "applications": "*",
   "fields": [],
   "name": "TableTime",
-  "pagination": "infinite-scroll",
+  "pagination": "pagination",
   "relationships": [
     {
       "otherEntityName": "classes",
       "relationshipName": "classes",
       "relationshipSide": "left",
-      "relationshipType": "one-to-one"
+      "relationshipType": "many-to-one"
     },
     {
       "otherEntityName": "student",
       "relationshipName": "student",
       "relationshipSide": "left",
-      "relationshipType": "one-to-one"
+      "relationshipType": "many-to-one"
     },
     {
       "otherEntityName": "course",
       "relationshipName": "course",
       "relationshipSide": "left",
-      "relationshipType": "one-to-one"
+      "relationshipType": "many-to-one"
     }
   ],
   "searchEngine": "no",

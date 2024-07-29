@@ -25,7 +25,7 @@ export const StudentDeleteDialog = () => {
   const updateSuccess = useAppSelector(state => state.student.updateSuccess);
 
   const handleClose = () => {
-    navigate('/student');
+    navigate('/student' + pageLocation.search);
   };
 
   useEffect(() => {

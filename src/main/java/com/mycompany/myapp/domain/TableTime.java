@@ -23,19 +23,16 @@ public class TableTime implements Serializable {
     @Column(name = "id")
     private Long id;
 
-    @JsonIgnoreProperties(value = { "students", "tableTime" }, allowSetters = true)
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(unique = true)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JsonIgnoreProperties(value = { "students" }, allowSetters = true)
     private Classes classes;
 
-    @JsonIgnoreProperties(value = { "classes", "course", "tableTime" }, allowSetters = true)
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(unique = true)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JsonIgnoreProperties(value = { "classes", "course" }, allowSetters = true)
     private Student student;
 
-    @JsonIgnoreProperties(value = { "students", "tableTime" }, allowSetters = true)
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(unique = true)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JsonIgnoreProperties(value = { "students" }, allowSetters = true)
     private Course course;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here

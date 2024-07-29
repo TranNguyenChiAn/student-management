@@ -25,7 +25,7 @@ export const TableTimeDeleteDialog = () => {
   const updateSuccess = useAppSelector(state => state.tableTime.updateSuccess);
 
   const handleClose = () => {
-    navigate('/table-time');
+    navigate('/table-time' + pageLocation.search);
   };
 
   useEffect(() => {

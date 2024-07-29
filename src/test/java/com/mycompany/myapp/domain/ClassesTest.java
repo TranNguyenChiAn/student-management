@@ -2,7 +2,6 @@ package com.mycompany.myapp.domain;
 
 import static com.mycompany.myapp.domain.ClassesTestSamples.*;
 import static com.mycompany.myapp.domain.StudentTestSamples.*;
-import static com.mycompany.myapp.domain.TableTimeTestSamples.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import com.mycompany.myapp.web.rest.TestUtil;
@@ -46,19 +45,5 @@ class ClassesTest {
         classes.setStudents(new HashSet<>());
         assertThat(classes.getStudents()).doesNotContain(studentBack);
         assertThat(studentBack.getClasses()).isNull();
-    }
-
-    @Test
-    void tableTimeTest() {
-        Classes classes = getClassesRandomSampleGenerator();
-        TableTime tableTimeBack = getTableTimeRandomSampleGenerator();
-
-        classes.setTableTime(tableTimeBack);
-        assertThat(classes.getTableTime()).isEqualTo(tableTimeBack);
-        assertThat(tableTimeBack.getClasses()).isEqualTo(classes);
-
-        classes.tableTime(null);
-        assertThat(classes.getTableTime()).isNull();
-        assertThat(tableTimeBack.getClasses()).isNull();
     }
 }

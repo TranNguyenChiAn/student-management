@@ -49,6 +49,7 @@ public class StudentAsserts {
             .as("Verify Student relevant properties")
             .satisfies(e -> assertThat(e.getFullName()).as("check fullName").isEqualTo(actual.getFullName()))
             .satisfies(e -> assertThat(e.getEmail()).as("check email").isEqualTo(actual.getEmail()))
+            .satisfies(e -> assertThat(e.getPhoneNumber()).as("check phoneNumber").isEqualTo(actual.getPhoneNumber()))
             .satisfies(e -> assertThat(e.getGender()).as("check gender").isEqualTo(actual.getGender()));
     }
 

@@ -12,6 +12,7 @@ entity Classes {
 entity Student {
 	fullName String
 	email String
+    phoneNumber String
     gender Gender
 }
 
@@ -24,34 +25,18 @@ enum Gender {
     MALE, FEMALE
 }
 
-
-
-// defining multiple OneToMany relationships with comments
 relationship OneToMany {
-	/**
-	* A relationship
-	*/
-	Classes to
-	/**
-	* Another side of the same relationship
-	*/
-	Student{classes}
+	Classes to Student{classes}
     
     Course to Student{course}
 }
 
-
-
-// defining multiple oneToOne relationships
-relationship OneToOne {
+relationship ManyToOne {
 	TableTime{classes} to Classes
 	TableTime{student} to Student
     TableTime{course} to Course
 }
-
-// Set pagination options
-paginate TableTime, Student with infinite-scroll
-paginate Classes, Course with pagination
+paginate Classes, Course, TableTime, Student with pagination
 
 service all with serviceImpl 
 

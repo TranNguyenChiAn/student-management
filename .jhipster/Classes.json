@@ -14,7 +14,6 @@
   "pagination": "pagination",
   "relationships": [
     {
-      "documentation": "A relationship",
       "otherEntityName": "student",
       "otherEntityRelationshipName": "classes",
       "relationshipName": "student",

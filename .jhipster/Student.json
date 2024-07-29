@@ -14,16 +14,19 @@
       "fieldType": "String"
     },
     {
+      "fieldName": "phoneNumber",
+      "fieldType": "String"
+    },
+    {
       "fieldName": "gender",
       "fieldType": "Gender",
       "fieldValues": "MALE,FEMALE"
     }
   ],
   "name": "Student",
-  "pagination": "infinite-scroll",
+  "pagination": "pagination",
   "relationships": [
     {
-      "documentation": "Another side of the same relationship",
       "otherEntityName": "classes",
       "relationshipName": "classes",
       "relationshipSide": "right",

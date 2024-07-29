@@ -10,14 +10,18 @@ public class StudentTestSamples {
     private static final AtomicLong longCount = new AtomicLong(random.nextInt() + (2 * Integer.MAX_VALUE));
 
     public static Student getStudentSample1() {
-        return new Student().id(1L).fullName("fullName1").email("email1");
+        return new Student().id(1L).fullName("fullName1").email("email1").phoneNumber("phoneNumber1");
     }
 
     public static Student getStudentSample2() {
-        return new Student().id(2L).fullName("fullName2").email("email2");
+        return new Student().id(2L).fullName("fullName2").email("email2").phoneNumber("phoneNumber2");
     }
 
     public static Student getStudentRandomSampleGenerator() {
-        return new Student().id(longCount.incrementAndGet()).fullName(UUID.randomUUID().toString()).email(UUID.randomUUID().toString());
+        return new Student()
+            .id(longCount.incrementAndGet())
+            .fullName(UUID.randomUUID().toString())
+            .email(UUID.randomUUID().toString())
+            .phoneNumber(UUID.randomUUID().toString());
     }
 }

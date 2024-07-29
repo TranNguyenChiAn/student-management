@@ -34,11 +34,13 @@ export const TableTimeUpdate = () => {
   const updateSuccess = useAppSelector(state => state.tableTime.updateSuccess);
 
   const handleClose = () => {
-    navigate('/table-time');
+    navigate('/table-time' + location.search);
   };
 
   useEffect(() => {
-    if (!isNew) {
+    if (isNew) {
+      dispatch(reset());
+    } else {
       dispatch(getEntity(id));
     }
 
