@@ -163,10 +163,10 @@ public class ClassesResource {
         return ResponseUtil.wrapOrNotFound(classes);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/available")
     public List<Classes> getAvailableClassrooms() {
-        List<Classes> allClassrooms = classesRepository.findAll();
-        return allClassrooms.stream().filter(classroom -> classroom.getStudents().size() < 25).collect(Collectors.toList());
+        List<Classes> allClassrooms = classesService.getAvailableClass();
+        return ResponseEntity.ok(allClassrooms).getBody();
     }
 
     /**

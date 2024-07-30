@@ -1,7 +1,9 @@
 package com.mycompany.myapp.web.rest;
 
+import com.mycompany.myapp.domain.Classes;
 import com.mycompany.myapp.domain.Student;
 import com.mycompany.myapp.repository.StudentRepository;
+import com.mycompany.myapp.service.ClassesService;
 import com.mycompany.myapp.service.StudentService;
 import com.mycompany.myapp.web.rest.errors.BadRequestAlertException;
 import java.net.URI;
@@ -40,10 +42,12 @@ public class StudentResource {
     private final StudentService studentService;
 
     private final StudentRepository studentRepository;
+    private final ClassesService classesService;
 
-    public StudentResource(StudentService studentService, StudentRepository studentRepository) {
+    public StudentResource(StudentService studentService, StudentRepository studentRepository, ClassesService classesService) {
         this.studentService = studentService;
         this.studentRepository = studentRepository;
+        this.classesService = classesService;
     }
 
     /**
@@ -172,5 +176,10 @@ public class StudentResource {
         return ResponseEntity.noContent()
             .headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString()))
             .build();
+    }
+
+    @GetMapping("/available")
+    public List<Classes> getAvailableClasses() {
+        return classesService.getAvailableClass();
     }
 }

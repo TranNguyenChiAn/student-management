@@ -3,7 +3,9 @@ package com.mycompany.myapp.service.impl;
 import com.mycompany.myapp.domain.Classes;
 import com.mycompany.myapp.repository.ClassesRepository;
 import com.mycompany.myapp.service.ClassesService;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -30,6 +32,12 @@ public class ClassesServiceImpl implements ClassesService {
     public Classes save(Classes classes) {
         log.debug("Request to save Classes : {}", classes);
         return classesRepository.save(classes);
+    }
+
+    @Override
+    public List<Classes> getAvailableClass() {
+        List<Classes> allClassrooms = classesRepository.findAll();
+        return allClassrooms.stream().filter(classroom -> classroom.getStudents().size() < 25).collect(Collectors.toList());
     }
 
     @Override

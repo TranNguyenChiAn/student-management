@@ -9,12 +9,14 @@ import { mapIdList } from 'app/shared/util/entity-utils';
 import { useAppDispatch, useAppSelector } from 'app/config/store';
 
 import { IClasses } from 'app/shared/model/classes.model';
-import { getEntities as getClasses } from 'app/entities/classes/classes.reducer';
+// import { getEntities as getClasses } from 'app/entities/classes/classes.reducer';
+
 import { ICourse } from 'app/shared/model/course.model';
 import { getEntities as getCourses } from 'app/entities/course/course.reducer';
 import { IStudent } from 'app/shared/model/student.model';
 import { Gender } from 'app/shared/model/enumerations/gender.model';
 import { getEntity, updateEntity, createEntity, reset } from './student.reducer';
+import { getAvailable } from 'app/entities/classes/classes.reducer';
 
 export const StudentUpdate = () => {
   const dispatch = useAppDispatch();
@@ -24,13 +26,15 @@ export const StudentUpdate = () => {
   const { id } = useParams<'id'>();
   const isNew = id === undefined;
 
-  const classes = useAppSelector(state => state.classes.entities);
+  // const classes = useAppSelector(state => state.classes.entities);
   const courses = useAppSelector(state => state.course.entities);
   const studentEntity = useAppSelector(state => state.student.entity);
   const loading = useAppSelector(state => state.student.loading);
   const updating = useAppSelector(state => state.student.updating);
   const updateSuccess = useAppSelector(state => state.student.updateSuccess);
   const genderValues = Object.keys(Gender);
+
+  const [classes, setClasses] = useState<IClasses[]>([]);
 
   const handleClose = () => {
     navigate('/student' + location.search);
@@ -43,7 +47,7 @@ export const StudentUpdate = () => {
       dispatch(getEntity(id));
     }
 
-    dispatch(getClasses({}));
+    // dispatch(getClasses({}));
     dispatch(getCourses({}));
   }, []);
 
@@ -52,6 +56,16 @@ export const StudentUpdate = () => {
       handleClose();
     }
   }, [updateSuccess]);
+
+  useEffect(() => {
+    getAvailable()
+      .then(response => {
+        setClasses(response.data);
+      })
+      .catch(error => {
+        console.error('There was an error fetching!', error);
+      });
+  });
 
   // eslint-disable-next-line complexity
   const saveEntity = values => {
@@ -149,11 +163,13 @@ export const StudentUpdate = () => {
                 label={translate('studentManagementApplicationApp.student.classes')}
                 type="select"
               >
-                <option value="" key="0" />
+                <option disabled selected>
+                  -- Choose --
+                </option>
                 {classes
-                  ? classes.map(otherEntity => (
-                      <option value={otherEntity.id} key={otherEntity.id}>
-                        {otherEntity.id}
+                  ? classes.map(classes => (
+                      <option value={classes.id} key={classes.id}>
+                        {classes.className}
                       </option>
                     ))
                   : null}
@@ -165,11 +181,13 @@ export const StudentUpdate = () => {
                 label={translate('studentManagementApplicationApp.student.course')}
                 type="select"
               >
-                <option value="" key="0" />
+                <option disabled selected>
+                  -- Choose --
+                </option>
                 {courses
                   ? courses.map(otherEntity => (
                       <option value={otherEntity.id} key={otherEntity.id}>
-                        {otherEntity.id}
+                        {otherEntity.courseName}
                       </option>
                     ))
                   : null}

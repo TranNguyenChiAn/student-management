@@ -3,6 +3,7 @@ import { createAsyncThunk, isFulfilled, isPending } from '@reduxjs/toolkit';
 import { cleanEntity } from 'app/shared/util/entity-utils';
 import { IQueryParams, createEntitySlice, EntityState, serializeAxiosError } from 'app/shared/reducers/reducer.utils';
 import { IStudent, defaultValue } from 'app/shared/model/student.model';
+import { IClasses } from 'app/shared/model/classes.model';
 
 const initialState: EntityState<IStudent> = {
   loading: false,
