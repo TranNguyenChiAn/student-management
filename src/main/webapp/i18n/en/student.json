@@ -20,7 +20,6 @@
       "id": "ID",
       "fullName": "Full Name",
       "email": "Email",
-      "phoneNumber": "Phone Number",
       "gender": "Gender",
       "classes": "Classes",
       "course": "Course"

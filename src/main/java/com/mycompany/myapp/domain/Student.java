@@ -32,9 +32,6 @@ public class Student implements Serializable {
     @Column(name = "email")
     private String email;
 
-    @Column(name = "phone_number")
-    private String phoneNumber;
-
     @Enumerated(EnumType.STRING)
     @Column(name = "gender")
     private Gender gender;
@@ -86,19 +83,6 @@ public class Student implements Serializable {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getPhoneNumber() {
-        return this.phoneNumber;
-    }
-
-    public Student phoneNumber(String phoneNumber) {
-        this.setPhoneNumber(phoneNumber);
-        return this;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
     }
 
     public Gender getGender() {
@@ -166,7 +150,6 @@ public class Student implements Serializable {
             "id=" + getId() +
             ", fullName='" + getFullName() + "'" +
             ", email='" + getEmail() + "'" +
-            ", phoneNumber='" + getPhoneNumber() + "'" +
             ", gender='" + getGender() + "'" +
             "}";
     }

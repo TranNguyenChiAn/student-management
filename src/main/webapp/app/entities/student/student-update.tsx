@@ -137,13 +137,6 @@ export const StudentUpdate = () => {
                 type="text"
               />
               <ValidatedField
-                label={translate('studentManagementApplicationApp.student.phoneNumber')}
-                id="student-phoneNumber"
-                name="phoneNumber"
-                data-cy="phoneNumber"
-                type="text"
-              />
-              <ValidatedField
                 label={translate('studentManagementApplicationApp.student.gender')}
                 id="student-gender"
                 name="gender"

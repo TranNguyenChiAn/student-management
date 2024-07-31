@@ -44,12 +44,6 @@ export const StudentDetail = () => {
           </dt>
           <dd>{studentEntity.email}</dd>
           <dt>
-            <span id="phoneNumber">
-              <Translate contentKey="studentManagementApplicationApp.student.phoneNumber">Phone Number</Translate>
-            </span>
-          </dt>
-          <dd>{studentEntity.phoneNumber}</dd>
-          <dt>
             <span id="gender">
               <Translate contentKey="studentManagementApplicationApp.student.gender">Gender</Translate>
             </span>

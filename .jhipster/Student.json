@@ -14,10 +14,6 @@
       "fieldType": "String"
     },
     {
-      "fieldName": "phoneNumber",
-      "fieldType": "String"
-    },
-    {
       "fieldName": "gender",
       "fieldType": "Gender",
       "fieldValues": "MALE,FEMALE"

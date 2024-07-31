@@ -51,9 +51,6 @@ public class StudentServiceImpl implements StudentService {
                 if (student.getEmail() != null) {
                     existingStudent.setEmail(student.getEmail());
                 }
-                if (student.getPhoneNumber() != null) {
-                    existingStudent.setPhoneNumber(student.getPhoneNumber());
-                }
                 if (student.getGender() != null) {
                     existingStudent.setGender(student.getGender());
                 }

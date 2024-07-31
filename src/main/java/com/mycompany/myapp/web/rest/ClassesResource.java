@@ -11,7 +11,6 @@ import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
-import java.util.stream.Collectors;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -163,12 +162,6 @@ public class ClassesResource {
         return ResponseUtil.wrapOrNotFound(classes);
     }
 
-    @GetMapping("/available")
-    public List<Classes> getAvailableClassrooms() {
-        List<Classes> allClassrooms = classesService.getAvailableClass();
-        return ResponseEntity.ok(allClassrooms).getBody();
-    }
-
     /**
      * {@code DELETE  /classes/:id} : delete the "id" classes.
      *
@@ -182,5 +175,11 @@ public class ClassesResource {
         return ResponseEntity.noContent()
             .headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString()))
             .build();
+    }
+
+    @GetMapping("/available")
+    public List<Classes> getAvailableClassrooms() {
+        List<Classes> allClassrooms = classesService.getAvailableClass();
+        return ResponseEntity.ok(allClassrooms).getBody();
     }
 }

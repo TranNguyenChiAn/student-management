@@ -122,10 +122,6 @@ export const Student = () => {
                   <Translate contentKey="studentManagementApplicationApp.student.email">Email</Translate>{' '}
                   <FontAwesomeIcon icon={getSortIconByFieldName('email')} />
                 </th>
-                <th className="hand" onClick={sort('phoneNumber')}>
-                  <Translate contentKey="studentManagementApplicationApp.student.phoneNumber">Phone Number</Translate>{' '}
-                  <FontAwesomeIcon icon={getSortIconByFieldName('phoneNumber')} />
-                </th>
                 <th className="hand" onClick={sort('gender')}>
                   <Translate contentKey="studentManagementApplicationApp.student.gender">Gender</Translate>{' '}
                   <FontAwesomeIcon icon={getSortIconByFieldName('gender')} />
@@ -150,7 +146,6 @@ export const Student = () => {
                   </td>
                   <td>{student.fullName}</td>
                   <td>{student.email}</td>
-                  <td>{student.phoneNumber}</td>
                   <td>
                     <Translate contentKey={`studentManagementApplicationApp.Gender.${student.gender}`} />
                   </td>

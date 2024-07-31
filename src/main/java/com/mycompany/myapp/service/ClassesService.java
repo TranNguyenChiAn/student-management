@@ -17,7 +17,6 @@ public interface ClassesService {
      * @return the persisted entity.
      */
     Classes save(Classes classes);
-
     List<Classes> getAvailableClass();
 
     /**
